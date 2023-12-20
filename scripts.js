@@ -1,46 +1,45 @@
-let operandOne = "";
+let numOne = "";
+let numTwo = "";
 let operator = "";
-let operandTwo = "";
-let displayContent = "";
-let answer = "";
 
-const add = (a, b) => a + b;
-const subtract = (a, b) => a - b;
-const multiply = (a, b) => a * b;
-const divide = (a, b) => a / b;
+const add = (numOne, numTwo) => parseFloat(numOne) + parseFloat(numTwo);
+const subtract = (numOne, numTwo) => numOne - numTwo;
+const multiply = (numOne, numTwo) => numOne * numTwo;
+const divide = (numOne, numTwo) => numOne / numTwo;
 
-function operate(operandOne, operator, operandTwo) {
-  if (operator === "+") return add(operandOne, operandTwo);
-  if (operator === "-") return subtract(operandOne, operandTwo);
-  if (operator === "*") return multiply(operandOne, operandTwo);
-  if (operator === "/") return divide(operandOne, operandTwo);
+function operate(operator, numOne, numTwo) {
+  if (operator === "+") return (final.textContent = add(numOne, numTwo));
+  if (operator === "-") return (final.textContent = subtract(numOne, numTwo));
+  if (operator === "*") return (final.textContent = multiply(numOne, numTwo));
+  if (operator === "/") return (final.textContent = divide(numOne, numTwo));
 }
 
 const grabOperator = (button) => {
-  if (operator && operandTwo) {
-    operandOne = operate(operandOne, operator, operandTwo);
-    operandTwo = "";
+  if (operator && numTwo) {
+    numOne = operate(operator, numOne, numTwo);
+    numTwo = "";
+    final.textContent = "";
   }
   operator = button.target.textContent;
   updateDisplay();
 };
 const grabNumber = (button) => {
-  if (!operator) operandOne += button.target.textContent;
-  if (operator) operandTwo += button.target.textContent;
+  if (final.textContent && numTwo) clear();
+  if (!operator) numOne += button.target.textContent;
+  if (operator) numTwo += button.target.textContent;
   updateDisplay();
 };
 
 function clear() {
-  operandOne = "";
+  numOne = "";
   operator = "";
-  operandTwo = "";
-  answer = "";
+  numTwo = "";
+  final.textContent = "";
   updateDisplay();
 }
 
 function updateDisplay() {
-  display.textContent = `${operandOne} ${operator} ${operandTwo}`;
-  displayContent = display.textContent;
+  display.textContent = `${numOne} ${operator} ${numTwo}`;
 }
 
 // UI
@@ -57,3 +56,9 @@ const numberBtns = document
 const clearBtn = document
   .querySelector(".clear")
   .addEventListener("click", clear);
+
+const final = document.querySelector(".answer");
+
+const equalsBtn = document
+  .querySelector(".equal")
+  .addEventListener("click", () => operate(operator, numOne, numTwo));
