@@ -2,6 +2,7 @@ let operandOne = "";
 let operator = "";
 let operandTwo = "";
 let displayContent = "";
+let answer = "";
 
 const add = (a, b) => a + b;
 const subtract = (a, b) => a - b;
@@ -15,26 +16,34 @@ function operate(operandOne, operator, operandTwo) {
   if (operator === "/") return divide(operandOne, operandTwo);
 }
 
-const grabOperator = (button) => (operator = button.target.textContent);
+const grabOperator = (button) => {
+  if (operator && operandTwo) {
+    operandOne = operate(operandOne, operator, operandTwo);
+    operandTwo = "";
+  }
+  operator = button.target.textContent;
+  updateDisplay();
+};
 const grabNumber = (button) => {
   if (!operator) operandOne += button.target.textContent;
   if (operator) operandTwo += button.target.textContent;
   updateDisplay();
 };
 
-
 function clear() {
-  display.textContent = "";
+  operandOne = "";
+  operator = "";
+  operandTwo = "";
+  answer = "";
+  updateDisplay();
 }
 
 function updateDisplay() {
-  clear();
   display.textContent = `${operandOne} ${operator} ${operandTwo}`;
   displayContent = display.textContent;
 }
 
-
-// UI 
+// UI
 
 const display = document.querySelector(".display");
 const operatorBtns = document
@@ -42,7 +51,7 @@ const operatorBtns = document
   .forEach((e) => e.addEventListener("click", grabOperator));
 
 const numberBtns = document
-  .querySelectorAll(".digit")
+  .querySelectorAll(".number")
   .forEach((e) => e.addEventListener("click", grabNumber));
 
 const clearBtn = document
