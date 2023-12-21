@@ -6,7 +6,7 @@ const rndToTwo = number => Math.round(number * 100) / 100;
 const add = (a, b) => parseFloat(a) + parseFloat(b);
 const subtract = (a, b) => a - b;
 const multiply = (a, b) => a * b;
-const divide = (a, b) => (b === '0' ? 'error: div by 0' : a / b);
+const divide = (a, b) => a / b;
 
 const grabDecimal = button => {
 	if (!operator && numOne.search(/\./)) {
@@ -48,7 +48,7 @@ const updateDisplay = () => {
 	display.textContent = `${numOne} ${operator} ${numTwo}`;
 };
 
-//switch formatted for yomi
+//switch formatted for mieruko
 function operate(operator, a, b) {
 	if (!b) return;
 	switch (operator) {
@@ -59,9 +59,9 @@ function operate(operator, a, b) {
 		case '*':
 			return rndToTwo(multiply(a, b));
 		case '/':
-			return rndToTwo(divide(a, b));
+			return isFinite(divide(a, b)) ? divide(a, b) : 'error: div by 0';
 		default:
-			return `error: how did you break this`;
+			return `error: how did you break this?`;
 	}
 }
 
