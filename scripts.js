@@ -68,7 +68,7 @@ function operate(operator, a, b) {
 // UI
 
 const final = document.querySelector('.answer');
-const display = document.querySelector('.display');
+const display = document.querySelector('.equation');
 const operatorBtns = document
 	.querySelectorAll('.operator')
 	.forEach(e => e.addEventListener('click', grabOperator));
