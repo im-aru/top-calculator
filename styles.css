@@ -11,10 +11,10 @@ body {
   flex-direction: column;
   background: #1c1c1c;
   margin: 0 auto;
-  padding: 40px;
+  padding: 0px;
   align-items:center;
   justify-content:flex-end;
-  width: 295px;
+  max-width: 300px;
   height: auto;
   border-radius: 15px;
 }
@@ -24,16 +24,19 @@ body {
   align-items: flex-end;
   color: white;
   width: 90%;
-  height: 150px;
+  min-height: 150px;
+  padding: 10px;
 }
 
 .equation{
+  flex: 1;
   font-size: 40px;
   margin:0px;
   padding: 0px
 }
 
 .answer{
+  flex: 1;
   size: 100%;
   font-size: 80px;
   margin: 0px;
@@ -44,9 +47,11 @@ body {
   display:flex;
   align-items: center;
   justify-content: center;
-  align-self:flex-end;
-  justify-self:flex-end;
-  flex-wrap:wrap;
+  align-self:center;
+  justify-self:center;
+  /* flex-wrap:wrap; */
+  flex-direction: column;
+  padding-bottom: 20px;
 }
 
 button {
@@ -59,10 +64,18 @@ button {
   background: #505050;
   border: 0px solid #ff9600;
   border-radius:50%;
-  margin: 6px;
+  margin: 3px;
 }
 
 .operator,
 .equal{
   background: #ff9600;
+}
+
+.equal{
+  margin: 8px;
+  padding: 10px;
+  width:100%;
+  flex: 1;
+  border-radius: 4px;
 }
